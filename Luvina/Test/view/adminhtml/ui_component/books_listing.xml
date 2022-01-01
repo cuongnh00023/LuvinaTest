@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">books_listing.books_listing_data_source</item>
+            <item name="deps" xsi:type="string">books_listing.books_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New</label>
+            </button>
+        </buttons>
+        <spinner>books_listing_columns</spinner>
+        <deps>
+            <dep>books_listing.books_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="books_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">books_id</param>
+            </storageConfig>
+            <filterUrlParams>
+                <param name="books_id">*</param>
+                <param name="title">*</param>
+                <param name="author">*</param>
+                <param name="year">*</param>
+                <param name="price">*</param>
+            </filterUrlParams>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Luvina_Test::management</aclResource>
+        <dataProvider class="Luvina\Test\Ui\DataProvider\BooksDataProvider" name="books_listing_data_source">
+            <settings>
+                <requestFieldName>books_id</requestFieldName>
+                <primaryFieldName>books_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="books_listing_columns">
+        <column name="books_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="title">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Title</label>
+            </settings>
+        </column>
+        <column name="author">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Author</label>
+            </settings>
+        </column>
+        <column name="year">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Year</label>
+            </settings>
+        </column>
+        <column name="price" class="Luvina\Test\Ui\Component\Listing\Column\Price">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Price</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Luvina\Test\Ui\Component\Listing\Column\BooksBlockActions">
+            <settings>
+                <indexField>books_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

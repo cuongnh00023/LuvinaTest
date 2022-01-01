@@ -1,0 +1,17 @@
+{
+  "books": {
+    "column": {
+      "books_id": true,
+      "title": true,
+      "author": true,
+      "year": true,
+      "price": true
+    },
+    "index": {
+      "BOOKS_BOOKS_ID": true
+    },
+    "constraint": {
+      "PRIMARY": true
+    }
+  }
+}

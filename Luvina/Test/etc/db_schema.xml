@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="books" resource="default" engine="innodb" comment="Books">
+        <column xsi:type="int" name="books_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Books Id Column"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title Column"/>
+        <column xsi:type="varchar" name="author" nullable="false" length="255" comment="Author Column"/>
+        <column xsi:type="int" name="year" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Year Column"/>
+        <column xsi:type="decimal" name="price" precision="20" scale="2" unsigned="true" nullable="false"
+                comment="Price Column"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="books_id"/>
+        </constraint>
+        <index referenceId="BOOKS_BOOKS_ID" indexType="btree">
+            <column name="books_id"/>
+        </index>
+    </table>
+</schema>
